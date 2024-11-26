@@ -1,0 +1,63 @@
+.roadmapContainer {
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  /* background: linear-gradient(135deg, #1d3557, #457b9d); */
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.treeNode {
+  margin: 10px 0;
+  position: relative;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.nodeLabel {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.nodeLabel:hover {
+  transform: scale(1.05);
+  background: rgb(255, 255, 255);
+}
+
+.childrenContainer {
+  margin-left: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
