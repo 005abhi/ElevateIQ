@@ -9,7 +9,6 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
     --foreground: #ededed;
   }
 }
@@ -46,7 +45,5 @@ body {
 
 .home {
   flex: 1;
-
   overflow-y: auto;
-  background-color: #000; /* Match background to blend */
 }

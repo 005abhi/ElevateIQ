@@ -23,7 +23,7 @@ const NewsPage: React.FC = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          `https://newsapi.org/v2/everything?q=mechanical%20OR%20engineering%20OR%20companies%20OR%20technology%20OR%20industry&apiKey=${apiKey}`
+          `https://newsapi.org/v2/everything?q=computer%20OR%IOT%20OR%20companies%20OR%20technology%20OR%20industry&apiKey=${apiKey}`
         );
 
         const filteredArticles = response.data.articles.filter(
@@ -103,5 +103,4 @@ const NewsPage: React.FC = () => {
     </main>
   );
 };
-
 export default NewsPage;

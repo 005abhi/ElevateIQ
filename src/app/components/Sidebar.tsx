@@ -9,20 +9,112 @@ import {
   FaUser,
 } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Sidebar = () => {
   const menuItems = [
-    { icon: <FaHome />, label: "Home", href: "/" },
-    { icon: <FaSearch />, label: "GAMEIT", href: "/Gameit" },
-    { icon: <FaCompass />, label: "SKILLHIVE", href: "/skillhive" },
-    { icon: <FaEnvelope />, label: "BYTEBRIEFS", href: "/ByteBriefs" },
-    { icon: <FaBell />, label: "WHAPPNING", href: "/Whappning" },
-    { icon: <FaPlusCircle />, label: "JOBIT", href: "/Jobbit" },
-    { icon: <FaUser />, label: "CAREERCOMPUS", href: "/careercompus" },
+    {
+      icon: (
+        <div className="relative w-12 h-12">
+          <Image
+            src="/HOME.png"
+            layout="fill"
+            className="object-contain"
+            alt="Home Icon"
+          />
+        </div>
+      ),
+      label: "Home",
+      href: "/",
+    },
+    {
+      icon: (
+        <div className="relative w-12 h-12">
+          <Image
+            src="/GAMEIT.png"
+            layout="fill"
+            className="object-contain"
+            alt="Gameit Icon"
+          />
+        </div>
+      ),
+      label: "GAMEIT",
+      href: "/Gameit",
+    },
+    {
+      icon: (
+        <div className="relative w-12 h-12">
+          <Image
+            src="/SKILLHIVE.png"
+            layout="fill"
+            className="object-contain"
+            alt="Skillhive Icon"
+          />
+        </div>
+      ),
+      label: "SKILLHIVE",
+      href: "/skillhive",
+    },
+    {
+      icon: (
+        <div className="relative w-12 h-12">
+          <Image
+            src="/WHAPPNING.png"
+            layout="fill"
+            className="object-contain"
+            alt="Bytebriefs Icon"
+          />
+        </div>
+      ),
+      label: "BYTEBRIEFS",
+      href: "/ByteBriefs",
+    },
+    {
+      icon: (
+        <div className="relative w-12 h-12">
+          <Image
+            src="/BYTEBRIFES.png"
+            layout="fill"
+            className="object-contain"
+            alt="Whappning Icon"
+          />
+        </div>
+      ),
+      label: "WHAPPNING",
+      href: "/Whappning",
+    },
+    {
+      icon: (
+        <div className="relative w-12 h-12">
+          <Image
+            src="/j.png"
+            layout="fill"
+            className="object-contain"
+            alt="Jobbit Icon"
+          />
+        </div>
+      ),
+      label: "JOBIT",
+      href: "/Jobbit",
+    },
+    {
+      icon: (
+        <div className="relative w-12 h-12">
+          <Image
+            src="/CC.jpg"
+            layout="fill"
+            className="object-contain"
+            alt="Careercompus Icon"
+          />
+        </div>
+      ),
+      label: "CAREERCOMPUS",
+      href: "/careercompus",
+    },
   ];
 
   return (
-    <div className="flex flex-col gap-3 p-4">
+    <div className="flex flex-col gap-1 p-5">
       <div
         style={{
           fontFamily: "'Emilys Candy', cursive",
@@ -31,7 +123,7 @@ export const Sidebar = () => {
           alignItems: "center", // Center vertically
           height: "100%", // Ensure it takes the full container height
         }}
-        className="text-white font-bold text-xl mb-4 gap-2 p-2 text-gray-700 hover:text-gray-900"
+        className="text-white font-bold text-xl mb-4 gap-2 p-2 text-gray-700"
       >
         ELEVATEIQ
       </div>
@@ -46,7 +138,7 @@ export const Sidebar = () => {
       ))}
       <style jsx>{`
         .sidebar {
-          width: 150px;
+          width: 200px;
           height: 100%; /* Full viewport height */
           background: #d1d5db; /* Gray-400 color */
           display: flex;
@@ -60,12 +152,13 @@ export const Sidebar = () => {
         }
         .menu-item {
           display: flex;
-          flex-direction: column;
+          justify-content: start;
           align-items: center;
-          margin: 1rem 0;
+          width: 100%; /* Full width for left-right spacing */
+          padding: 0.5rem 1rem;
           color: #fff;
           cursor: pointer;
-          transition: color 0.3s ease, transform 0.3s ease;
+          transition: background 0.3s ease, transform 0.3s ease;
         }
         .menu-item:hover {
           color: #00ffab;
@@ -73,7 +166,7 @@ export const Sidebar = () => {
         }
         .menu-item span {
           font-size: 15px;
-          margin-top: 9px;
+          margin-right: 30px; /* Add gap between text and image */
         }
       `}</style>
     </div>

@@ -1,78 +1,91 @@
 "use client";
 
-import Image from "next/image";
 import { ElementType, ReactElement } from "react";
+import "./globals.css";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
-    <main className="w-full min-h-screen">
-      <header
-        id="home"
-        className="flex flex-col md:flex-row w-full h-auto md:h-screen items-center justify-center p-4 sm:p-8 relative overflow-hidden"
-      >
-        <div className="flex flex-col justify-center items-center gap-4 sm:gap-8 text-center md:w-2/3">
-          <div className="flex flex-col gap-2">
-            <h1 className="text-3xl sm:text-5xl md:text-8xl font-black">
-              ElevateIQ
-            </h1>
-            <h2 className="text-sm sm:text-lg md:text-2xl">
-              Reskilling Workforce
-            </h2>
+    <main>
+      <div>
+        <Navbar></Navbar>
+      </div>
+      {/* Background Video */}
+      <div>
+        <video
+          autoPlay
+          loop
+          muted
+          id="background-video"
+          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        >
+          <source src="/video/a.mp4" type="video/mp4" />
+        </video>
+      </div>
+      {/* Main Content */}
+      <div className="relative z-10">
+        <header
+          id="home"
+          className="flex flex-col w-full h-screen items-center justify-center relative overflow-hidden"
+        >
+          <div className="flex flex-col justify-center items-center gap-4 sm:gap-8 text-center md:w-2/3">
+            <div className="flex flex-col gap-2">
+              <h1 className="text-3xl sm:text-5xl md:text-8xl font-black text-white">
+                ElevateIQ
+              </h1>
+              <h2 className="text-sm sm:text-lg md:text-2xl text-white">
+                Reskilling Workforce
+              </h2>
+            </div>
+            <p className="max-w-xs sm:max-w-md text-xs sm:text-base text-zinc-300">
+              ElevateIQ is a comprehensive platform that serves as a bridge
+              between educational institutions and industry demands,
+              facilitating seamless skill alignment and boosting employability
+              among Indian youth.
+            </p>
           </div>
-          <p className="max-w-xs sm:max-w-md text-xs sm:text-base text-zinc-500">
-            ElevateIQ is a comprehensive platform that serves as a bridge
-            between educational institutions and industry demands, facilitating
-            seamless skill alignment and boosting employability among Indian
-            youth.
-          </p>
-        </div>
+        </header>
 
-        <div className="w-full h-60 md:w-1/3 md:h-full flex justify-center items-center relative">
-          <Image
-            src="/h.png"
-            layout="fill"
-            className="object-contain"
-            alt="Background Whirl"
-          />
-        </div>
-      </header>
-
-      <section
-        id="about"
-        className="h-auto min-h-screen w-full flex relative items-center justify-center p-4 sm:p-8"
-      >
-        <div className="absolute -z-10 h-full w-full overflow-hidden">
-          <img
-            src="/whirl.svg"
-            className="object-cover w-full overflow-visible sm:rotate-90"
-            alt="Background Whirl"
-          />
-        </div>
-        <div className="w-full h-full flex flex-col items-center justify-center gap-4 sm:gap-8 max-w-7xl">
-          <h3 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center">
-            Keeps you Updated on Tech World with these !!
-          </h3>
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {infoCards.map((infoCard, index) => (
-              <InfoCard key={index} Icon={infoCard.icon} title={infoCard.title}>
-                <div className="flex flex-col items-center justify-center mb-4 p-4">
-                  <p className="text-xs sm:text-base text-center">
-                    {infoCard.bodyText}
-                  </p>
-                  <a
-                    href={infoCard.href}
-                    className="bg-fuchsia-700 rounded p-2 text-xs sm:text-sm transition-colors hover:bg-fuchsia-800 mt-2"
-                  >
-                    {infoCard.buttonText}
-                  </a>
-                </div>
-              </InfoCard>
-            ))}
+        <section
+          id="about"
+          className="h-auto min-h-screen w-full flex relative items-center justify-center p-4 sm:p-8"
+        >
+          <div className="w-full h-full flex flex-col items-center justify-center gap-4 sm:gap-8 max-w-7xl">
+            <h3 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center text-white">
+              Keeps you Updated on Tech World with these !!
+            </h3>
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {infoCards.map((infoCard, index) => (
+                <InfoCard
+                  key={index}
+                  Icon={infoCard.icon}
+                  title={infoCard.title}
+                >
+                  <div className="flex flex-col items-center justify-center mb-4 p-4">
+                    <p className="text-xs sm:text-base text-center text-white">
+                      {infoCard.bodyText}
+                    </p>
+                    <a
+                      href={infoCard.href}
+                      className="bg-fuchsia-700 rounded p-2 text-xs sm:text-sm transition-colors hover:bg-fuchsia-800 mt-2"
+                    >
+                      {infoCard.buttonText}
+                    </a>
+                  </div>
+                </InfoCard>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
+}
+
+interface IInfoCardProps {
+  title: string;
+  Icon: ElementType;
+  children: ReactElement<any, any>;
 }
 
 interface IInfoCardProps {
