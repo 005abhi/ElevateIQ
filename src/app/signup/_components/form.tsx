@@ -2,12 +2,9 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import styles from "./Form.module.css";
-import "./globals.css"; // Importing module CSS
 
 const Form = ({ role }: { role: string }) => {
   const router = useRouter();
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -43,62 +40,65 @@ const Form = ({ role }: { role: string }) => {
       alert("Please fill all the fields");
     }
   };
-
   return (
-    <div className={styles.formContainer}>
-      <form onSubmit={handleSubmit} className={styles.formCard}>
-        <h1 className={styles.formTitle}>Register</h1>
-        <div className={styles.formGroup}>
-          <label htmlFor="fullname" className={styles.formLabel}>
-            Full Name
+    <form onSubmit={handleSubmit}>
+      <h1 className="text-white text-2xl py-4">Register</h1>
+      <div className="flex flex-col gap-y-4">
+        <div>
+          <label htmlFor="" className="text-white">
+            Full Name:
           </label>
           <input
             type="text"
             name="fullname"
-            className={styles.formInput}
             pattern="[A-Za-z ]{3,}"
-            title="Full name must contain at least three characters"
+            title="Username must contain atleast three characters"
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="username" className={styles.formLabel}>
-            Username
+        <div>
+          <label htmlFor="" className="text-white">
+            Username:
           </label>
           <input
             type="text"
             name="username"
-            className={styles.formInput}
             pattern=".{3,}"
-            title="Username must contain at least three characters"
+            title="Username must contain atleast three characters"
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password" className={styles.formLabel}>
-            Password
+        <div>
+          <label htmlFor="" className="text-white">
+            Password:
           </label>
           <input
             type="password"
             name="password"
-            className={styles.formInput}
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Password must contain at least one number, one uppercase letter, one lowercase letter, and be 8 or more characters"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="role" className={styles.formLabel}>
-            Role
+        <div>
+          <label htmlFor="" className="text-white">
+            Role:
           </label>
-          <select name="role" className={styles.formInput} defaultValue={role}>
-            <option value="student">Student</option>
-            <option value="company">Company</option>
-            <option value="college">College</option>
+          <select name="role" id="" defaultValue={role}>
+            <option value="student" selected={role === "student"}>
+              Student
+            </option>
+            <option value="company" selected={role === "company"}>
+              Company
+            </option>
+            <option value="college" selected={role === "college"}>
+              College
+            </option>
           </select>
         </div>
-        <button type="submit" className={styles.formButton}>
-          Register
-        </button>
-      </form>
-    </div>
+      </div>
+
+      <button type="submit" className="text-white p-1 bg-blue-400 my-2">
+        Register
+      </button>
+    </form>
   );
 };
 

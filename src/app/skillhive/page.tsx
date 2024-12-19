@@ -7,7 +7,7 @@ import { ElementType, ReactElement } from "react";
 import { FiMoreVertical } from "react-icons/fi";
 import SignOut from "./components/ui/signout";
 import SignIn from "./components/ui/signin";
-import Navbar from "@/components/Navbar";
+// import Navbar from "@/components/Navbar";
 import { getServerSession } from "next-auth";
 import { options } from "../api/auth/[...nextauth]/options";
 
@@ -31,7 +31,7 @@ export default async function page() {
 
   return (
     <main className="bg-gray-900 min-h-screen">
-      <Navbar />
+      {/* <Navbar /> */}
       {session ? (
         <div>
           <h1 className="text-white">Welcome {session.user.fullname}</h1>

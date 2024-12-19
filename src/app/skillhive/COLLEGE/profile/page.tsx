@@ -13,7 +13,7 @@ import {
 import { Button } from "../../components/ui/button";
 import { ThumbsUp, MessageSquare } from "lucide-react";
 import "./globals.css";
-import { Sidebar } from "@/app/components/Sidebar";
+
 import Image from "next/image";
 
 const page = async () => {
@@ -28,9 +28,7 @@ const page = async () => {
 
   return (
     <div className="layout">
-      <div className="sidebar">
-        <Sidebar></Sidebar>
-      </div>
+      <div className="sidebar"></div>
       <div className="main-content">
         <div className="max-w-2xl mx-auto space-y-4">
           <div className="post-card">
@@ -57,8 +55,8 @@ const page = async () => {
                 <Image
                   src={post.imagePath}
                   alt="Post image"
-                  width={500}
-                  height={500}
+                  width={200}
+                  height={200}
                 />
               )}
               <div className="footer">

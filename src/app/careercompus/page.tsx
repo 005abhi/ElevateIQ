@@ -7,7 +7,7 @@ import { Url } from "next/dist/shared/lib/router/router";
 
 const programs = [
   {
-    title: "Product Design",
+    title: "Frontend Developer",
     description: "Make products users love. Learn the product design process.",
     buttonText: "View program",
     route: "/careercompus/pages/A", // Route for this program
