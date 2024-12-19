@@ -44,7 +44,7 @@ body {
   box-sizing: border-box; /* Ensure the border doesn't affect the width */
 }
 
-.home {
+.byte {
   flex: 1;
 
   overflow-y: auto;

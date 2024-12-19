@@ -21,10 +21,10 @@ export const page = () => {
               />
               <div className="text-center lg:w-2/3 w-full">
                 <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
-                  ONLINE EVENTS
+                  HACKATHONS
                 </h1>
                 <p className="leading-relaxed mb-8">
-                  TOP 2024 SUMMER TECH INTERNSHIP PROGRAMS FOR HACKERS
+                "Unleash Your Creativity: Join Our Upcoming Hackathons!"
                 </p>
                 <div className="flex justify-center">
                   <button className="inline-flex text-white bg-indigo-900 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
@@ -45,11 +45,10 @@ export const page = () => {
               />
               <div className="text-center lg:w-2/3 w-full">
                 <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
-                  OFFLINE EVENTS
+                  JOB FAIRS
                 </h1>
                 <p className="leading-relaxed mb-8">
-                  FIND, COMPETE, AND EARN POINTS AT THE LARGEST, MOST DIVERSE
-                  HACKER EVENTS IN THE WORLD.
+                "Unleash Your Creativity: Join Our Upcoming Hackathons!"
                 </p>
                 <div className="flex justify-center">
                   <button className="inline-flex text-white bg-indigo-900 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">

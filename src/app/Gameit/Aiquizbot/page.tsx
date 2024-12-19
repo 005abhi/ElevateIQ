@@ -123,76 +123,68 @@ export default function Home() {
   };
 
   return (
-    <main className="layout w-full overflow-hidden">
-      <div className="sidebar">
+    <main className="layout w-full h-screen overflow-hidden">
+      <div className="sidebar w-1/5 min-w-[200px] bg-black text-white h-screen fixed top-0 left-0">
         <Sidebar />
       </div>
-      <div className="byte w-full"></div>
-      <div className="quizAppWrapper">
-        <div className="bottomOverlay">
-          <span></span>
-        </div>
-        <h4 className="title">Quiz Application</h4>
-        <div className="searchWraper">
-          <p className="categories">Categories:</p>
-          <div className="search-box">
-            <button className="btn-search">
+
+      {/* Main Content */}
+      <div className="content w-full ml-[200px] h-screen overflow-y-auto px-8 py-6">
+        {/* Header */}
+        {/* Search Wrapper */}
+        <div className="searchWrapper flex flex-col items-center mb-6">
+          <div className="search-box flex items-center w-full max-w-md border border-gray-300 rounded-lg p-2">
+            <button className="btn-search bg-indigo-500 text-white p-2 rounded-l-md">
               <Search />
             </button>
             <input
               type="text"
-              className="input-search"
+              className="input-search flex-grow px-3 py-2 focus:outline-none"
               placeholder="Type to Search..."
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
-              }}
-              onKeyUp={(e) => {
                 searchCategory();
               }}
             />
           </div>
         </div>
 
+        {/* Error Handling */}
         {hasError ? (
-          <>
-            <div className="notFound mt-8">
-              <Frown className="h-[8rem] w-[8rem] text-[#5b4c6b]" />
-              <div className="message text-[2rem] font-semibold text-[#5b4c6b]">
-                Category Not Found
-              </div>
+          <div className="notFound flex flex-col items-center mt-8">
+            <Frown className="h-[8rem] w-[8rem] text-[#5b4c6b]" />
+            <div className="message text-[2rem] font-semibold text-[#5b4c6b]">
+              Category Not Found
             </div>
-          </>
+          </div>
         ) : (
-          <div className="quizCategories grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-8">
-            {categoriesData.map((cate, i) => {
-              return (
-                <>
-                  <figure
-                    key={i}
-                    onClick={() => {
-                      createQuiz(cate.name, 1);
-                    }}
-                  >
-                    <img src={`${cate.imageURL}`} alt={`${cate.name}`} />
-                    <figcaption>Category: {cate.name}</figcaption>
-                  </figure>
-                </>
-              );
-            })}
+          /* Quiz Categories */
+          <div className="quizCategories grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {categoriesData.map((cate, i) => (
+              <figure
+                key={i}
+                className="border border-gray-700 bg-gray-900 text-white rounded-lg shadow-md p-4 transition-transform hover:scale-105 cursor-pointer"
+                onClick={() => createQuiz(cate.name, 1)}
+              >
+                <img
+                  src={`${cate.image}`}
+                  alt={`${cate.name}`}
+                  className="w-full h-40 object-cover rounded-md mb-3"
+                />
+                <figcaption className="text-center text-lg font-semibold">
+                  {cate.name}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         )}
 
+        {/* Quiz Dialog */}
         <div className={`quizDailog ${isOpen ? "block" : "hidden"}`}>
-          <header>
+          <header className="flex justify-between items-center">
             <h5>Awesome Quiz</h5>
-            <div className="rightOptions">
-              {/* <Button className="timeLeft sm:w-auto bg-[#9a75c3]">
-								Time Left{" "}
-								<p className="rounded-sm bg-[#6d508e] ml-2 px-1">
-									{time}s
-								</p>
-							</Button> */}
+            <div className="rightOptions flex items-center">
               <Button
                 className="bg-[#9a75c3] ml-3"
                 onClick={() => {
@@ -209,10 +201,12 @@ export default function Home() {
               <>
                 <div className="h-[5rem] my-8 animate-pulse bg-purple-200 rounded-2xl"></div>
                 <div className="options">
-                  <div className="h-[3.6rem] mb-6 animate-pulse bg-purple-200 rounded-2xl"></div>
-                  <div className="h-[3.6rem] mb-6 animate-pulse bg-purple-200 rounded-2xl"></div>
-                  <div className="h-[3.6rem] mb-6 animate-pulse bg-purple-200 rounded-2xl"></div>
-                  <div className="h-[3.6rem] mb-6 animate-pulse bg-purple-200 rounded-2xl"></div>
+                  {[...Array(4)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-[3.6rem] mb-6 animate-pulse bg-purple-200 rounded-2xl"
+                    ></div>
+                  ))}
                 </div>
               </>
             ) : (
@@ -220,40 +214,18 @@ export default function Home() {
                 <h1>
                   <b>Question:</b> {quizData.question}
                 </h1>
-
                 <div className="optionsBox">
-                  <div
-                    className={`option ${
-                      selectedOption == "a" ? "correct" : ""
-                    }`}
-                    onClick={() => checkAnswer(quizData.options.a, "a")}
-                  >
-                    <b>A)</b>&nbsp; {quizData.options.a}
-                  </div>
-                  <div
-                    className={`option ${
-                      selectedOption == "b" ? "correct" : ""
-                    }`}
-                    onClick={() => checkAnswer(quizData.options.b, "b")}
-                  >
-                    <b>B)</b>&nbsp; {quizData.options.b}
-                  </div>
-                  <div
-                    className={`option ${
-                      selectedOption == "c" ? "correct" : ""
-                    }`}
-                    onClick={() => checkAnswer(quizData.options.c, "c")}
-                  >
-                    <b>C)</b>&nbsp; {quizData.options.c}
-                  </div>
-                  <div
-                    className={`option ${
-                      selectedOption == "d" ? "correct" : ""
-                    }`}
-                    onClick={() => checkAnswer(quizData.options.d, "d")}
-                  >
-                    <b>D)</b>&nbsp; {quizData.options.d}
-                  </div>
+                  {Object.entries(quizData.options).map(([key, value]) => (
+                    <div
+                      key={key}
+                      className={`option ${
+                        selectedOption === key ? "correct" : ""
+                      }`}
+                      onClick={() => checkAnswer(value, key)}
+                    >
+                      <b>{key.toUpperCase()})</b>&nbsp; {value}
+                    </div>
+                  ))}
                 </div>
                 <div className={`${correctAns ? "block" : "hidden"}`}>
                   <b>Correct Answer: </b>
@@ -262,39 +234,18 @@ export default function Home() {
               </>
             )}
           </main>
-          <footer>
+          <footer className="flex justify-between">
             <div className="left">
               <p>
                 <span>{quizData.currentQuestion}</span> out of <span>10</span>
               </p>
             </div>
-            <div className="right">
-              <Button
-                className="mr-3 bg-transparent border-[#6d508e] border-[2px] hover:text-white text-[#6d508e] hover:bg-[#6d508e]"
-                onClick={() => {
-                  setIsOpen(false);
-                  setQuizData({
-                    question: "",
-                    options: {
-                      a: "",
-                      b: "",
-                      c: "",
-                      d: "",
-                    },
-                    correctAnswer: "",
-                    currentQuestion: 1,
-                    totalCorrectAnswers: 0,
-                  });
-                  setCurrentCate("");
-                  setIsLoading(true);
-                  setSelectedOption("");
-                  setCurrentQuestion(0);
-                }}
-              >
+            <div className="right flex items-center">
+              <Button className="mr-3 bg-transparent border-[#6d508e] border-[2px] hover:text-white text-[#6d508e] hover:bg-[#6d508e]">
                 Exit Game
               </Button>
               <Button
-                disabled={isLoading || quizData.currentQuestion == 10}
+                disabled={isLoading || quizData.currentQuestion === 10}
                 className="bg-[#9a75c3] hover:bg-[#6d508e]"
                 onClick={() => createQuiz(currentCate, currentQuestion + 1)}
               >
@@ -304,35 +255,18 @@ export default function Home() {
           </footer>
         </div>
 
-        <div className={`result ${result ? "flex" : "hidden"}`}>
+        {/* Result Section */}
+        <div
+          className={`result ${
+            result ? "flex" : "hidden"
+          } flex-col items-center`}
+        >
           <Crown className="h-[7rem] w-[7rem] !text-[#9a75c3]" />
           <h2 className="text-center">
             <b className="text-[3rem]">Congrats!</b>
             <br /> You have answered {quizData.totalCorrectAnswers} / 10 right!
           </h2>
-          <Button
-            className="mr-3 bg-[#6d508e] text-white"
-            onClick={() => {
-              setResult(false);
-              setIsOpen(false);
-              setQuizData({
-                question: "",
-                options: {
-                  a: "",
-                  b: "",
-                  c: "",
-                  d: "",
-                },
-                correctAnswer: "",
-                currentQuestion: 1,
-                totalCorrectAnswers: 0,
-              });
-              setCurrentCate("");
-              setIsLoading(true);
-              setSelectedOption("");
-              setCurrentQuestion(0);
-            }}
-          >
+          <Button className="mt-4 bg-[#6d508e] text-white">
             Play Again <RotateCcw className="h-[1.2rem] ml-2 w-[1.2rem]" />
           </Button>
         </div>
