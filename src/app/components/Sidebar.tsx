@@ -111,6 +111,20 @@ export const Sidebar = () => {
       label: "CAREERCOMPUS",
       href: "/careercompus",
     },
+    {
+      icon: (
+        <div className="relative w-12 h-12">
+          <Image
+            src="/CC.jpg"
+            layout="fill"
+            className="object-contain"
+            alt="Careercompus Icon"
+          />
+        </div>
+      ),
+      label: "AI",
+      href: "/AI/interBit",
+    },
   ];
 
   return (

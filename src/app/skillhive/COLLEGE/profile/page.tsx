@@ -10,10 +10,11 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "../../components/ui/avatar";
+import { Sidebar } from "../../../components/Sidebar";
+
 import { Button } from "../../components/ui/button";
 import { ThumbsUp, MessageSquare } from "lucide-react";
 import "./globals.css";
-
 import Image from "next/image";
 
 const page = async () => {
@@ -28,58 +29,70 @@ const page = async () => {
 
   return (
     <div className="layout">
-      <div className="sidebar"></div>
+      <div className="sidebar">
+        <Sidebar />
+      </div>
       <div className="main-content">
         <div className="max-w-2xl mx-auto space-y-4">
           <div className="post-card">
             <CreatePost userId={userId} authorRole="college" />
           </div>
           {posts.map((post) => (
-            <div key={String(post._id)} className="post-card">
-              <div className="header">
-                <Avatar className="w-10 h-10 mr-3">
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>{post.createdBy.fullname}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="font-semibold">{post.title}</p>
-                  <p className="text-sm text-gray-400">
-                    {new Date(post.createdAt).toLocaleDateString()}
+            <div
+              key={String(post._id)}
+              className="post-card max-w-lg mx-auto bg-gray-900 rounded-lg shadow-md mb-6"
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-700">
+                <div className="flex items-center">
+                  {/* Avatar */}
+                  <Avatar className="w-10 h-10 mr-3">
+                    <AvatarImage src="/placeholder-user.jpg" />
+                    <AvatarFallback>
+                      {post.createdBy.fullname[0]}
+                    </AvatarFallback>
+                  </Avatar>
+                  {/* Full Name */}
+                  <p className="text-sm font-semibold">
+                    {post.createdBy.fullname}
                   </p>
                 </div>
+                {/* Created At */}
+                <p className="text-xs text-gray-400">
+                  {new Date(post.createdAt).toLocaleDateString()}
+                </p>
               </div>
-              <div>
-                <p>{post.content}</p>
-              </div>
+
+              {/* Photo */}
               {post.imagePath && (
-                <Image
-                  src={post.imagePath}
-                  alt="Post image"
-                  width={200}
-                  height={200}
-                />
-              )}
-              <div className="footer">
-                <div className="flex items-center">
-                  <ThumbsUp className="mr-2 h-4 w-4 text-blue-500" />
-                  <span>{post?.likes?.length || 0} likes</span>
+                <div className="w-full">
+                  <Image
+                    src={post.imagePath}
+                    alt="Uploaded photo"
+                    width={500}
+                    height={500}
+                    className="object-cover w-full"
+                  />
                 </div>
-                <span>{post?.comments?.length || 0} comments</span>
+              )}
+
+              {/* Footer */}
+              <div className="p-4">
+                {/* Title */}
+                <p className="text-base font-semibold mb-2">{post.title}</p>
+                {/* Content */}
+                <p className="text-sm text-gray-300">{post.content}</p>
               </div>
-              <div className="flex mt-4 space-x-2">
-                <Button
-                  variant="ghost"
-                  className="flex-1 text-gray-300 hover:bg-gray-700 hover:text-white"
-                >
-                  <ThumbsUp className="mr-2 h-4 w-4" />
-                  Like
+
+              {/* Interactions */}
+              <div className="flex justify-between items-center p-4 border-t border-gray-700">
+                <Button variant="ghost" className="flex items-center space-x-2">
+                  <ThumbsUp className="w-5 h-5" />
+                  <span className="text-sm">Like</span>
                 </Button>
-                <Button
-                  variant="ghost"
-                  className="flex-1 text-gray-300 hover:bg-gray-700 hover:text-white"
-                >
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  Comment
+                <Button variant="ghost" className="flex items-center space-x-2">
+                  <MessageSquare className="w-5 h-5" />
+                  <span className="text-sm">Comment</span>
                 </Button>
               </div>
             </div>
